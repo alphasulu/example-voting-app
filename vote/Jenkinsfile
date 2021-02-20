@@ -5,6 +5,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh 'sudo chown -R $USER:$USER ./local'
                 sh 'pip install --no-cache-dir -r vote/requirements.txt'
             }
         }
