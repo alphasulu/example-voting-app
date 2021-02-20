@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                  sh "pip install -r vote/requirements.txt --user"
+                  sh "pip install -r vote/requirements.txt"
             }
         }
         stage('Test') {
