@@ -4,8 +4,10 @@ pipeline {
     }
     stages {
         stage('Build') {
-            withEnv(["HOME=${env.WORKSPACE}"]) {
-              sh "pip install -r vote/requirements.txt --user"
+            steps {
+                 withEnv(["HOME=${env.WORKSPACE}"]) {
+                    sh "pip install -r vote/requirements.txt --user"
+                }
             }
         }
         stage('Test') {
