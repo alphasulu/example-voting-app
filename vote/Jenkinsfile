@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'pip3 install --user --no-cache-dir -r vote/requirements.txt'
+                sh 'python pip install --user -r vote/requirements.txt'
             }
         }
         stage('Test') {
