@@ -45,7 +45,7 @@ pipeline {
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
                         def workerImage = docker.build("akhamsa/vote:v${env.BUILD_ID}", "./vote")
                         workerImage.push()
-                        workerImage.push("${env.BRANCH_NAME}")
+                        workerImage.push("dockerbuild")
                         workerImage.push("latest")
                     }
                 }
