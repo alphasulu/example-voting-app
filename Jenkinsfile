@@ -21,7 +21,7 @@ pipeline {
             }
             steps {
                 dir('vote') {
-                    sh "pip install -r vote/requirements.txt"
+                    sh "pip install -r requirements.txt"
                     sh 'nosetests -v'
                 }
             }
