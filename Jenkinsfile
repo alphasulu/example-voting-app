@@ -1,6 +1,36 @@
 pipeline {
     agent none
     stages {
+        stage("result Build") {
+            agent {
+                docker {
+                    image ''
+                }
+            }
+            when {
+                changeset "**/result/**"
+            }
+        
+            steps {
+                echo 'build the result nodeJs app'
+                dir('result') {
+                    sh 'npm install'
+                }
+            }
+        }
+    
+        stage("result test") {
+            when {
+                changeset "**/result/**"
+            }
+            
+            steps {
+            echo 'run the test'
+                dir('result') {
+                    sh 'npm test'      
+                }
+            }
+        }
         stage('Vote Build') {
             agent {
                 docker {
