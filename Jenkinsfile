@@ -56,5 +56,34 @@ pipeline {
                 }
             }
         }
+        stage("worker build"){
+            agent {
+                docker {
+                    image 'maven:3-openjdk-11-slim'
+                }
+            }
+            steps{
+                echo 'Compiling worker app..'
+                dir('worker'){
+                    sh 'mvn compile'
+                }
+            }
+        }
+        stage("worker test"){
+            steps{
+                echo 'Running Unit Tets on worker app..'
+                dir('worker'){
+                    sh 'mvn clean test'
+                }
+            }
+        }
+        stage("worker package"){
+            steps{
+                echo 'Packaging worker app'
+                dir('worker'){
+                    sh 'mvn package'
+                }
+            }
+        }
     }
 }
