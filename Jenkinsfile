@@ -5,6 +5,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:15.11-slim'
+                    args '--user root'
                 }
             }
             steps {
