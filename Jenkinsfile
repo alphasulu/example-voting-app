@@ -4,13 +4,9 @@ pipeline {
         stage("result Build") {
             agent {
                 docker {
-                    image ''
+                    image 'node:15.11-slim'
                 }
             }
-            when {
-                changeset "**/result/**"
-            }
-        
             steps {
                 echo 'build the result nodeJs app'
                 dir('result') {
@@ -20,13 +16,15 @@ pipeline {
         }
     
         stage("result test") {
-            when {
-                changeset "**/result/**"
+            agent {
+                docker {
+                    image 'node:15.11-slim'
+                }
             }
-            
             steps {
             echo 'run the test'
                 dir('result') {
+                    sh 'npm install'
                     sh 'npm test'      
                 }
             }
